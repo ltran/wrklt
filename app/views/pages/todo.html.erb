@@ -6,6 +6,13 @@
     <div class="col-md-4">
         <h2>To Do:</h2>
         <br />
+        <div class="person-filter">
+            <%= form_with url: root_path, local: true, class: "form-inline my-2 my-lg-0", method: :get %>
+                <input class="form-control mr-sm-2" name="filter" type="search" placeholder="Filter" aria-label="Filter">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+            </form>
+            <br />
+        </div>
         <div class="todolist">
         <ul id="sortable" class="list-unstyled">
         <% @tasks.each do |task| %>
