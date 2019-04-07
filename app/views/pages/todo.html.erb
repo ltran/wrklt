@@ -1,0 +1,85 @@
+<style>
+  div.checkbox input:checked + label {text-decoration: line-through}
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <h2>To Do:</h2>
+        <br />
+        <div class="todolist">
+        <ul id="sortable" class="list-unstyled">
+        <% @tasks.each do |task| %>
+        <% puts @tasks.size %>
+            <li class="ui-state-default">
+            <div class="checkbox">
+                <%= check_box_tag task.name.underscore, task.id, task.completed, class: task.completed ? 'completed' : '' %>
+                <%= label_tag task.name.underscore, task_label_text(task) %>
+            </div>
+            </li>
+        <% end %>
+        </ul>
+        <div class="todo-footer">
+        <%= link_to new_task_path do %>
+        <button type="button" class="btn btn-info btn-block">+ Add Task</button>
+        <% end %>  
+        <hr />
+        <button type="button" class="btn btn-secondary filter-all">All</button>
+        <button type="button" class="btn btn-secondary filter-active">Active</button>
+        <button type="button" class="btn btn-secondary filter-completed">Completed</button>
+        </div>
+    </div>
+</div>
+
+<script>
+var checkboxes = document.querySelectorAll("input[type=checkbox]");
+var filterall = document.querySelector("button.filter-all")
+var filteractive = document.querySelector("button.filter-active")
+var filtercompleted = document.querySelector("button.filter-completed")
+
+for(i = 0; i < checkboxes.length; i++) {
+  checkboxes[i].addEventListener('change', function(e) {
+    if(this.checked) {
+        this.classList.add("completed")
+    } else {
+        this.classList.remove("completed")
+    }
+  });
+}
+
+filterall.addEventListener('click', function() {
+  for(i = 0; i < checkboxes.length; i++) {
+    if(checkboxes[i].parentNode.classList.contains("invisible")) {
+      checkboxes[i].parentNode.classList.remove("invisible");
+    }
+  }
+});
+
+filteractive.addEventListener('click', function() {
+    for(i = 0; i < checkboxes.length; i++) {
+        if(checkboxes[i].classList.contains('completed')) {
+            if(!checkboxes[i].parentNode.classList.contains('invisible')) {
+                checkboxes[i].parentNode.classList.add('invisible');
+            }
+        } else {
+            if(checkboxes[i].parentNode.classList.contains('invisible')) {
+                checkboxes[i].parentNode.classList.remove('invisible');
+            }
+        }
+    }
+});
+
+filtercompleted.addEventListener('click', function() {
+    for(i = 0; i < checkboxes.length; i++) {
+        if(checkboxes[i].classList.contains('completed')) {
+            if(checkboxes[i].parentNode.classList.contains('invisible')) {
+                checkboxes[i].parentNode.classList.remove('invisible');
+            }
+        } else {
+            if(!checkboxes[i].parentNode.classList.contains('invisible')) {
+                checkboxes[i].parentNode.classList.add('invisible');
+            }
+        }
+    }
+});
+
+</script>

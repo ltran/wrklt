@@ -7,7 +7,7 @@
 
 <p>
   <strong>Person:</strong>
-  <%= @task.person %>
+  <%= @task.person.try(:name) %>
 </p>
 
 <p>

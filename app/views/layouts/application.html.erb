@@ -10,10 +10,21 @@
   </head>
 
   <body>
-    <%= link_to 'Manage Tasks',  tasks_path %>
-    <%= link_to 'Manage People',  people_path %>
-    
-    View Todo List (TBD)
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Todo App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <%= link_to 'Manage Tasks', tasks_path, class: "nav-item nav-link" %>
+          <%= link_to 'Manage People', people_path, class: "nav-item nav-link" %>
+          <%= link_to 'View Todo List (TBD)', "/", class: "nav-item nav-link" %>
+        </div>
+      </div>
+    </nav>  
+    <div class="container">
     <%= yield %>
+    </div>
   </body>
 </html>
