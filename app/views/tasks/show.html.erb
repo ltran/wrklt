@@ -7,7 +7,7 @@
 
 <p>
   <strong>Person:</strong>
-  <%= @task.person.try(:name) %>
+  <%= person_name_link_to(@task) %>
 </p>
 
 <p>
