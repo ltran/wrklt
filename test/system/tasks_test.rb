@@ -14,6 +14,7 @@ class TasksTest < ApplicationSystemTestCase
     visit tasks_url
     click_on "New Task"
 
+    check "Completed" if @task.completed
     fill_in "Name", with: @task.name
     fill_in "Person", with: @task.person_id
     click_on "Create Task"
@@ -26,6 +27,7 @@ class TasksTest < ApplicationSystemTestCase
     visit tasks_url
     click_on "Edit", match: :first
 
+    check "Completed" if @task.completed
     fill_in "Name", with: @task.name
     fill_in "Person", with: @task.person_id
     click_on "Update Task"

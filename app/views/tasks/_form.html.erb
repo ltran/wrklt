@@ -18,7 +18,12 @@
 
   <div class="field">
     <%= form.label :person_id %>
-    <%= form.select :person_id, Person.all.collect{ |p| [p.name, p.id] }, include_blank: true %>
+    <%= form.text_field :person_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :completed %>
+    <%= form.check_box :completed %>
   </div>
 
   <div class="actions">

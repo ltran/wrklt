@@ -3,7 +3,9 @@
 one:
   name: MyString
   person: one
+  completed: false
 
 two:
   name: MyString
   person: two
+  completed: false
