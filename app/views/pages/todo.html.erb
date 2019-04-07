@@ -9,7 +9,6 @@
         <div class="todolist">
         <ul id="sortable" class="list-unstyled">
         <% @tasks.each do |task| %>
-        <% puts @tasks.size %>
             <li class="ui-state-default">
             <div class="checkbox">
                 <%= check_box_tag task.name.underscore, task.id, task.completed, class: task.completed ? 'completed' : '' %>
@@ -36,6 +35,26 @@ var filterall = document.querySelector("button.filter-all")
 var filteractive = document.querySelector("button.filter-active")
 var filtercompleted = document.querySelector("button.filter-completed")
 
+function updateTask(checkbox) {
+    $.ajax({
+        type: "PATCH",
+        url: "complete/"+checkbox.attributes["value"].value,
+        dataType:"json",
+        data: {
+            completed: checkbox.checked,
+        },
+        success: function(data) {
+            console.log("success updated to task")
+        },
+        error: function() {
+            console.log("error updated to task")
+        },
+        complete: function() {
+            console.log("completed updated to task")
+        }
+    });
+}
+
 for(i = 0; i < checkboxes.length; i++) {
   checkboxes[i].addEventListener('change', function(e) {
     if(this.checked) {
@@ -43,6 +62,8 @@ for(i = 0; i < checkboxes.length; i++) {
     } else {
         this.classList.remove("completed")
     }
+
+    updateTask(this)
   });
 }
 
